@@ -1,15 +1,15 @@
 import React from 'react';
 import s from 'classnames';
 
-const Button = (props) => {
+const Button = ({ outline, className, children }) => {
   return (
     <button
-      className={s('button', {
-        'button--outline': props.outline,
+      className={s('button', className, {
+        'button--outline': outline,
         // 'button--test': this.props.children,
       })}
     >
-      {props.children}
+      {children}
     </button>
   );
 };

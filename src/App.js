@@ -1,26 +1,14 @@
 import React from 'react';
-import Header from './Header';
-import Button from './Button';
+import { Categories, Header } from './components';
 
 function App() {
   return (
     <div className="wrapper">
       <Header />
-      <Button outline>Knopka</Button>
-      <Button>Toje Knopka</Button>
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <div className="categories">
-              <ul>
-                <li className="active">Все</li>
-                <li>Мясные</li>
-                <li>Вегетарианская</li>
-                <li>Гриль</li>
-                <li>Острые</li>
-                <li>Закрытые</li>
-              </ul>
-            </div>
+            <Categories items={['Meat', 'Vegan', 'Grill', 'spicy', 'closed']} />
             <div className="sort">
               <div className="sort__label">
                 <svg
