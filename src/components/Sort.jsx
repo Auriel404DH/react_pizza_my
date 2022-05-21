@@ -5,7 +5,7 @@ const Sort = ({ items }) => {
   const [take, setTake] = useState(0);
   const sortRef = useRef();
 
-  const activeSort = items[take];
+  const activeSort = items[take].name;
 
   const toggleSort = () => {
     setOpen(!open);
@@ -52,7 +52,7 @@ const Sort = ({ items }) => {
               items.map((item, index) => {
                 return (
                   <li className={take === index ? 'active' : ''} onClick={() => clickSort(index)}>
-                    {item}
+                    {item.name}
                   </li>
                 );
               })}
