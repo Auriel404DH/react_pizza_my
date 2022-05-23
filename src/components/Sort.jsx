@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Sort = ({ items }) => {
+const Sort = React.memo(({ items }) => {
+  
   const [open, setOpen] = useState(false);
   const [take, setTake] = useState(0);
   const sortRef = useRef();
@@ -64,6 +65,6 @@ const Sort = ({ items }) => {
       )}
     </div>
   );
-};
+});
 
 export default Sort;
