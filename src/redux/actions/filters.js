@@ -1,10 +1,9 @@
-export const sortAC = (Sort) => ({
+export const sortAC = ({ type, order }) => ({
   type: 'SORT',
-  pyload: Sort,
+  payload: { type, order },
 });
 
 export const categoryAC = (category) => ({
-    type: 'CATEGORY',
-    pyload: category,
-  });
-  
+  type: 'CATEGORY',
+  payload: category,
+});

@@ -9,11 +9,12 @@ const pizzaReduser = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
+        isLoading: true,
       };
     case 'LOADING':
       return {
         ...state,
-        isLoading: !state.isLoading,
+        isLoading: action.payload,
       };
     default:
       return state;

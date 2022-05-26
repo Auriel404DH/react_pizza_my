@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Sort = React.memo(({ items }) => {
-  
+const Sort = React.memo(({ take, items, setTake }) => {
   const [open, setOpen] = useState(false);
-  const [take, setTake] = useState(0);
   const sortRef = useRef();
 
-  const activeSort = items[take].name;
+  const activeSort = items.find((obj) => obj.type === take).name;
 
   const toggleSort = () => {
     setOpen(!open);
@@ -52,7 +50,11 @@ const Sort = React.memo(({ items }) => {
             {items &&
               items.map((item, index) => {
                 return (
-                  <li className={take === index ? 'active' : ''} onClick={() => clickSort(index)}>
+                  <li
+                    key={`${item}_${index}`}
+                    className={take === item.name ? 'active' : ''}
+                    onClick={() => clickSort(item)}
+                  >
                     {item.name}
                   </li>
                 );
