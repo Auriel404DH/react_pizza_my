@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Categories, Sort, PizzaBlock } from '../index';
 import { categoryAC, sortAC } from './../../redux/actions/filters';
 import { fetchPizzas } from '../../redux/actions/pizzas';
+import { addPizza } from '../../redux/actions/cart';
 import PizzaLoading from '../pizzaBlock/PizzaLoading';
 
 const categories = ['Meat', 'Vegan', 'Grill', 'spicy', 'closed'];
@@ -16,12 +17,13 @@ const sort = [
 function Home() {
   const dispatch = useDispatch();
 
-  const { pizzas, isLoading, sortBy, category } = useSelector((state) => {
+  const { pizzas, isLoading, sortBy, category, cartItems } = useSelector((state) => {
     return {
       pizzas: state.pizzaReduser.items,
       isLoading: state.pizzaReduser.isLoading,
       sortBy: state.filterReduser.sortBy,
       category: state.filterReduser.category,
+      cartItems: state.cartReduser.items,
     };
   });
 
@@ -37,6 +39,9 @@ function Home() {
     dispatch(sortAC(type));
   }, []);
 
+  const addPizzaToCart = (obj) => {
+    dispatch(addPizza(obj));
+  };
   return (
     <div className="container">
       <div className="content__top">
@@ -47,11 +52,18 @@ function Home() {
       <div className="content__items">
         {isLoading
           ? pizzas.map((pizza, index) => {
-              return <PizzaBlock key={`${pizza}_${index}`} isLoading={true} {...pizza} />;
+              return (
+                <PizzaBlock
+                  cartCount={cartItems[pizza.id] && cartItems[pizza.id].length}
+                  onAddPizza={addPizzaToCart}
+                  key={`${pizza}_${index}`}
+                  {...pizza}
+                />
+              );
             })
           : Array(12)
               .fill(0)
-              .map((_, index) => <PizzaLoading key={index} />)}
+              .map((map, index) => <PizzaLoading key={`${index}_${map}`} />)}
       </div>
     </div>
   );
