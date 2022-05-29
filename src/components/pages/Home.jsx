@@ -54,7 +54,7 @@ function Home() {
           ? pizzas.map((pizza, index) => {
               return (
                 <PizzaBlock
-                  cartCount={cartItems[pizza.id] && cartItems[pizza.id].length}
+                  cartCount={cartItems[pizza.id] && cartItems[pizza.id].items.length}
                   onAddPizza={addPizzaToCart}
                   key={`${pizza}_${index}`}
                   {...pizza}
